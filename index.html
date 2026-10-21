@@ -10,7 +10,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Inter:wght@400;600;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            background-color: #090d16;
+        }
+        .font-arcade {
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 1px;
+        }
+        .font-digital {
+            font-family: 'Orbitron', monospace;
+        }
+        canvas {
+            display: block;
+            touch-action: none;
+        }
+        /* Custom UI Glassmorphism & Glow Styles */
+        .arcade-card {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glow-orange {
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
+        }
+        .glow-green {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
+        }
+        .glow-red {
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+        }
+        /* Custom Toggle Switch Animation */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #10b981;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #10b981;
+        }
+        @keyframes pulseStreak {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        .animate-streak {
+            animation: pulseStreak 0.5s infinite ease-in-out;
+        }
+    </style>
 </head>
 <body class="bg-slate-950 text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
 
@@ -256,7 +305,6 @@
     </footer>
 
     <!-- JAVASCRIPT GAME ENGINE -->
-    <script src="./script.js"></script>
     <script>
         /**
          * GYM HOOPS PRO - COMPLETE INDOOR BASKETBALL GAME ENGINE
@@ -1838,4 +1886,4 @@
         };
     </script>
 </body>
-</html> 
+</html>
