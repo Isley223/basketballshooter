@@ -187,6 +187,9 @@
         const CANVAS_VIRTUAL_HEIGHT = 560;
         const FLOOR_Y = 460;
         const GRAVITY = 0.42;
+        const PLAYER_MIN_X = 100;
+        const PLAYER_MAX_X = 875;
+        const BALL_PICKUP_DISTANCE = 28;
 
         const COURT_HOOP = {
             backboardX: 880,
@@ -507,8 +510,8 @@
                     if (Math.abs(this.vx) > 0) this.runCycle += Math.abs(this.vx) * 0.12;
 
                     // Court limits
-                    if (this.x < 100) this.x = 100;
-                    if (this.x > 875) this.x = 875;
+                    if (this.x < PLAYER_MIN_X) this.x = PLAYER_MIN_X;
+                    if (this.x > PLAYER_MAX_X) this.x = PLAYER_MAX_X;
 
                     if (Math.abs(this.vx) > 0 && Math.random() < 0.04) {
                         audio.playSqueak();
@@ -858,7 +861,8 @@
                     }
 
                     if (this.isLoose) {
-                        if (gameState === 'PLAYING' && Math.abs(player.x - this.x) < 28) {
+                        if (gameState === 'PLAYING' &&
+                            Math.abs(player.x - this.x) < BALL_PICKUP_DISTANCE) {
                             this.isLoose = false;
                             this.hasBall = true;
                         }
@@ -916,8 +920,8 @@
                 this.y += this.vy;
                 this.rotation += this.vx * 0.05;
 
-                if (this.x < -this.radius ||
-                    this.x > CANVAS_VIRTUAL_WIDTH + this.radius ||
+                if (this.x < PLAYER_MIN_X - BALL_PICKUP_DISTANCE ||
+                    this.x > PLAYER_MAX_X + BALL_PICKUP_DISTANCE ||
                     this.y < -this.radius ||
                     this.y > CANVAS_VIRTUAL_HEIGHT + this.radius) {
                     if (this.shotBy === 'PLAYER') {
