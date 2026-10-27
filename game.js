@@ -162,6 +162,11 @@
                 });
             }
 
+            playCrowdChant() {
+                if (!this.enabled || !('speechSynthesis' in window)) return;
+                window.speechSynthesis.speak(new SpeechSynthesisUtterance('Yay Mr. T!'));
+            }
+
             playGroan() {
                 if (!this.enabled || !this.ctx) return;
                 const osc = this.ctx.createOscillator();
@@ -1074,6 +1079,7 @@
                 redLEDFlashTimer = 25;
                 crowd.triggerCheer();
                 audio.playCheer();
+                audio.playCrowdChant();
 
                 const feedbackString = bonusText.length > 0 ? bonusText.join(" | ") : `+${totalEarned} POINTS`;
                 addFloatingText(this.x, this.y - 20, feedbackString, streak >= 3 ? '#f97316' : '#10b981');
